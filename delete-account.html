@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tastick — Hesap & Veri Silme</title>
+  <style>
+    :root { --bg:#0f0f1a; --card:#1a1a2e; --accent:#6C63FF; --text:#f0f0ff; --sub:#a0aec0; --border:rgba(108,99,255,0.2); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; font-size:15px; line-height:1.8; }
+    header { background:var(--card); border-bottom:1px solid var(--border); padding:20px 32px; }
+    header h1 { font-size:20px; font-weight:700; }
+    header p { font-size:12px; color:var(--sub); margin-top:2px; }
+    .container { max-width:720px; margin:0 auto; padding:40px 24px 80px; }
+    .section { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px 32px; margin-bottom:20px; }
+    .section h2 { font-size:16px; font-weight:700; color:var(--accent); margin-bottom:14px; }
+    .section p { color:var(--sub); margin-bottom:10px; }
+    .section ul { color:var(--sub); padding-left:20px; }
+    .section ul li { margin-bottom:8px; }
+    .section a { color:var(--accent); }
+    .step { display:flex; gap:16px; align-items:flex-start; margin-bottom:16px; }
+    .step-num { width:32px; height:32px; background:var(--accent); border-radius:99px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; flex-shrink:0; }
+    .step-text h3 { font-size:15px; font-weight:700; margin-bottom:4px; }
+    .step-text p { color:var(--sub); font-size:14px; margin:0; }
+    .warning { background:rgba(255,71,87,0.08); border:1px solid rgba(255,71,87,0.2); border-radius:10px; padding:14px 16px; color:#FF6B81; font-size:14px; margin-top:12px; }
+    .email-btn { display:inline-block; background:var(--accent); color:#fff; padding:14px 28px; border-radius:12px; font-weight:700; font-size:15px; margin-top:16px; }
+    footer { text-align:center; padding:32px; color:var(--sub); font-size:12px; border-top:1px solid var(--border); }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Tastick — Hesap & Veri Silme</h1>
+  <p>Oz Studio · Account & Data Deletion</p>
+</header>
+<div class="container">
+
+  <div class="section">
+    <h2>🗑️ Hesabınızı Nasıl Silebilirsiniz?</h2>
+    <p>Tastick hesabınızı ve tüm verilerinizi iki yöntemle silebilirsiniz:</p>
+
+    <div style="margin-top:20px">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <h3>Uygulama içinden (Anlık)</h3>
+          <p>Tastick uygulamasını açın → <strong>Ayarlar</strong> sekmesine gidin → Sayfanın altında <strong>"Hesabı Sil"</strong> butonuna tıklayın → Şifrenizi girin → Onaylayın.</p>
+          <p style="margin-top:6px;color:#FF6B81;font-size:13px">⚠️ Bu işlem geri alınamaz. Tüm verileriniz silinir.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <h3>E-posta ile talep (48 saat içinde)</h3>
+          <p>Uygulamaya erişiminiz yoksa aşağıdaki butona tıklayarak e-posta gönderin. Talebiniz 48 saat içinde işleme alınır.</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="mailto:oz.studio99@gmail.com?subject=Hesap%20Silme%20Talebi&body=Merhaba%2C%0A%0ATastick%20hesab%C4%B1m%C4%B1%20ve%20t%C3%BCm%20verilerimi%20silmenizi%20talep%20ediyorum.%0A%0AHesap%20e-postas%C4%B1%3A%20" class="email-btn">📧 Silme Talebi Gönder</a>
+  </div>
+
+  <div class="section">
+    <h2>📦 Hangi Veriler Silinir?</h2>
+    <ul>
+      <li>Hesap bilgileri (ad, e-posta, şifre)</li>
+      <li>Profil bilgileri (fotoğraf, biyografi, CV)</li>
+      <li>Tüm görevler ve alt görevler</li>
+      <li>Tüm oda üyelikleri ve mesajlar</li>
+      <li>Takip ve takipçi ilişkileri</li>
+      <li>Yüklenen dosyalar ve fotoğraflar</li>
+      <li>Abonelik bilgileri (RevenueCat'ten de silinir)</li>
+    </ul>
+    <div class="warning">⚠️ Silme işlemi geri alınamaz. Veriler 30 gün içinde kalıcı olarak yok edilir.</div>
+  </div>
+
+  <div class="section">
+    <h2>ℹ️ Silme Sonrası</h2>
+    <ul>
+      <li>Hesabınız anında devre dışı bırakılır</li>
+      <li>Tüm verileriniz 30 gün içinde kalıcı olarak silinir</li>
+      <li>Aktif Premium aboneliğiniz varsa hesap silme işlemi sonrasında aboneliğiniz otomatik olarak iptal edilir. Kalan süre için iade yapılmaz. İade talepleriniz için Google Play üzerinden başvurun</li>
+      <li>Aynı e-posta ile tekrar kayıt olabilirsiniz</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>📧 İletişim</h2>
+    <p>Sorularınız için: <a href="mailto:oz.studio99@gmail.com">oz.studio99@gmail.com</a></p>
+    <p>Talepler en geç 48 saat içinde yanıtlanır.</p>
+  </div>
+
+</div>
+<footer>© 2026 Oz Studio · Tastick · Tüm hakları saklıdır</footer>
+</body>
+</html>
