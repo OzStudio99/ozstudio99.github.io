@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tastick — KVKK Aydınlatma Metni / Privacy Notice</title>
+  <style>
+    :root { --bg:#0f0f1a; --card:#1a1a2e; --accent:#6C63FF; --accent2:#4CAF50; --text:#f0f0ff; --sub:#a0aec0; --border:rgba(108,99,255,0.2); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; font-size:15px; line-height:1.8; }
+    header { background:var(--card); border-bottom:1px solid var(--border); padding:20px 32px; display:flex; align-items:center; gap:16px; }
+    header h1 { font-size:20px; font-weight:700; }
+    header p { font-size:12px; color:var(--sub); margin-top:2px; }
+    .lang-switch { margin-left:auto; display:flex; gap:8px; }
+    .lang-switch button { background:transparent; border:1px solid var(--border); color:var(--sub); padding:6px 14px; border-radius:8px; cursor:pointer; font-size:12px; }
+    .lang-switch button.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+    .container { max-width:820px; margin:0 auto; padding:40px 24px 80px; }
+    .section { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px 32px; margin-bottom:20px; }
+    .section h2 { font-size:16px; font-weight:700; color:var(--accent); margin-bottom:14px; }
+    .section p { color:var(--sub); margin-bottom:10px; }
+    .section ul { color:var(--sub); padding-left:20px; }
+    .section ul li { margin-bottom:8px; }
+    .section a { color:var(--accent); }
+    .section table { width:100%; border-collapse:collapse; margin:12px 0; font-size:13.5px; }
+    .section th, .section td { border:1px solid var(--border); padding:10px 12px; text-align:left; color:var(--sub); }
+    .section th { background:rgba(108,99,255,0.08); color:var(--text); font-weight:600; }
+    .badge { display:inline-block; background:rgba(108,99,255,0.15); border:1px solid var(--border); color:var(--accent); font-size:11px; font-weight:700; padding:3px 10px; border-radius:99px; margin-bottom:20px; }
+    .date-badge { background:rgba(76,175,80,0.1); border-color:rgba(76,175,80,0.3); color:var(--accent2); }
+    .warning { background:rgba(255,71,87,0.08); border:1px solid rgba(255,71,87,0.2); border-radius:10px; padding:14px 16px; color:#FF6B81; font-size:14px; margin-top:12px; }
+    footer { text-align:center; padding:32px; color:var(--sub); font-size:12px; border-top:1px solid var(--border); }
+    [data-lang="en"] { display:none; }
+  </style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Tastick</h1>
+    <p id="header-sub">Oz Studio · KVKK Aydınlatma Metni</p>
+  </div>
+  <div class="lang-switch">
+    <button class="active" onclick="setLang('tr')">TR</button>
+    <button onclick="setLang('en')">EN</button>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- TÜRKÇE -->
+<div data-lang="tr">
+  <span class="badge">Oz Studio</span>
+  <span class="badge date-badge" style="margin-left:8px">Son Güncelleme: 19 Mayıs 2026</span>
+
+  <div class="section"><h2>1. Veri Sorumlusu</h2><p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında, kişisel verileriniz veri sorumlusu sıfatıyla <strong>Oz Studio</strong> tarafından işlenmektedir.</p><p><strong>İletişim:</strong> <a href="mailto:oz.studio99@gmail.com">oz.studio99@gmail.com</a><br><strong>Konum:</strong> Antalya, Türkiye</p></div>
+
+  <div class="section"><h2>2. Hangi Verileri Topluyoruz?</h2>
+  <table>
+    <tr><th>Veri Türü</th><th>İçerik</th></tr>
+    <tr><td>Kimlik Bilgisi</td><td>Ad Soyad (kullanıcı tarafından girilen)</td></tr>
+    <tr><td>İletişim Bilgisi</td><td>E-posta adresi</td></tr>
+    <tr><td>Hesap Bilgisi</td><td>Şifre (Firebase Auth tarafından bcrypt ile şifrelenmiş), Google hesap kimliği (Google ile giriş yapanlar için)</td></tr>
+    <tr><td>İçerik Verisi</td><td>Görevler, mesajlar, oda kayıtları, rutinler, fotoğraflar</td></tr>
+    <tr><td>Kullanım Verisi</td><td>Cihaz türü, uygulama içi etkinlik, hata raporları (Crashlytics)</td></tr>
+    <tr><td>Ödeme Verisi</td><td>Doğrudan toplanmaz. Google Play Store üzerinden yapılır.</td></tr>
+  </table>
+  </div>
+
+  <div class="section"><h2>3. Veri İşleme Amaçları</h2>
+  <ul>
+    <li>Hesap oluşturulması ve hizmet sağlanması</li>
+    <li>Görev ve oda yönetimi özelliklerinin sunulması</li>
+    <li>Kullanıcılar arası iletişim (sohbet, oda davetleri)</li>
+    <li>Premium abonelik yönetimi (RevenueCat üzerinden)</li>
+    <li>Hata ayıklama, güvenlik ve performans iyileştirmeleri</li>
+    <li>Yasal yükümlülüklerin yerine getirilmesi</li>
+  </ul>
+  </div>
+
+  <div class="section"><h2>4. Hukuki Sebep</h2>
+  <p>Verileriniz aşağıdaki hukuki sebeplere dayanılarak işlenir:</p>
+  <ul>
+    <li>KVKK m.5/2-c: Sözleşmenin kurulması ve ifası için zorunlu olması</li>
+    <li>KVKK m.5/2-ç: Veri sorumlusunun hukuki yükümlülüğü</li>
+    <li>KVKK m.5/2-f: Veri sorumlusunun meşru menfaati (güvenlik, hata tespit)</li>
+    <li>KVKK m.5/1: Açık rızanız (gerekli olduğu yerlerde)</li>
+  </ul>
+  </div>
+
+  <div class="section"><h2>5. Verilerin Aktarılması</h2>
+  <p>Verileriniz aşağıdaki hizmet sağlayıcılara aktarılabilir:</p>
+  <ul>
+    <li><strong>Google Firebase (ABD):</strong> Veri depolama, kimlik doğrulama, bildirim hizmetleri</li>
+    <li><strong>Google Play (ABD):</strong> Abonelik ve ödeme işlemleri</li>
+    <li><strong>RevenueCat (ABD):</strong> Abonelik yönetimi</li>
+    <li><strong>Adli ve idari makamlar:</strong> Yasal zorunluluk hâlinde</li>
+  </ul>
+  <p style="margin-top:10px">Yurtdışına veri aktarımı, KVKK m.9 kapsamında ve hizmet sağlayıcıların yeterli koruma sağlaması koşuluyla gerçekleştirilir.</p>
+  </div>
+
+  <div class="section"><h2>6. Veri Saklama Süresi</h2>
+  <ul>
+    <li>Aktif hesap verileri: Hesap aktif olduğu sürece</li>
+    <li>Sohbet mesajları: <strong>30 gün sonra otomatik silinir</strong></li>
+    <li>Hesap silindiğinde: Tüm kişisel veriler 30 gün içinde kalıcı olarak silinir</li>
+    <li>Yasal zorunluluk hâlinde belirtilen yasal süre kadar</li>
+  </ul>
+  </div>
+
+  <div class="section"><h2>7. KVKK Madde 11 Kapsamındaki Haklarınız</h2>
+  <p>Kanun kapsamında aşağıdaki haklara sahipsiniz:</p>
+  <ul>
+    <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+    <li>Kişisel verileriniz işlenmişse buna ilişkin bilgi talep etme</li>
+    <li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+    <li>Yurtiçinde/yurtdışında verilerinizin aktarıldığı 3. kişileri bilme</li>
+    <li>Eksik/yanlış işlenen verilerinizin düzeltilmesini talep etme</li>
+    <li>Verilerinizin silinmesini veya yok edilmesini talep etme</li>
+    <li>Verilerinizin taşınabilirliğini talep etme (uygulamada <strong>Ayarlar → Verilerimi İndir</strong> ile sağlanır)</li>
+    <li>Otomatik sistemlerle yapılan analiz sonucu aleyhinize bir sonuç çıkmasına itiraz etme</li>
+    <li>Kişisel verilerinizin kanuna aykırı işlenmesi sebebiyle uğradığınız zararın giderilmesini talep etme</li>
+  </ul>
+  <p style="margin-top:10px">Haklarınızı kullanmak için <a href="mailto:oz.studio99@gmail.com">oz.studio99@gmail.com</a> adresine yazılı olarak başvurabilirsiniz. Talepler 30 gün içinde yanıtlanır.</p>
+  </div>
+
+  <div class="section"><h2>8. Güvenlik Önlemleri</h2>
+  <ul>
+    <li>Şifreler Firebase Auth tarafından bcrypt ile şifrelenir, düz metin olarak saklanmaz</li>
+    <li>Veriler TLS ile şifreli kanaldan iletilir</li>
+    <li>Firestore Security Rules ile yetkisiz erişim engellenir</li>
+    <li>Kullanıcı oturumları token bazlı yönetilir</li>
+    <li>E-posta doğrulaması zorunludur</li>
+    <li>Brute-force koruması: 5 hatalı girişte 15 dakika kilitleme</li>
+  </ul>
+  </div>
+
+  <div class="section"><h2>9. Çocuklar</h2><p>Tastick 13 yaşından küçük çocuklara yönelik bir hizmet değildir. 13–18 yaş arası kullanıcıların hesap oluşturmadan önce veli izni alması gerekmektedir.</p></div>
+
+  <div class="section"><h2>10. Şikayet Hakkı</h2><p>Kişisel veri işleme konusundaki şikayetlerinizi <strong>Kişisel Verileri Koruma Kurumu'na (KVKK)</strong> iletebilirsiniz: <a href="https://www.kvkk.gov.tr" target="_blank">www.kvkk.gov.tr</a></p></div>
+
+  <div class="section"><h2>11. Değişiklikler</h2><p>Bu Aydınlatma Metni güncellenebilir. Önemli değişiklikler uygulama içi bildirim ile duyurulur.</p></div>
+
+  <div class="section"><h2>12. İletişim</h2><p><strong>Oz Studio</strong><br>E-posta: <a href="mailto:oz.studio99@gmail.com">oz.studio99@gmail.com</a><br>Antalya, Türkiye</p></div>
+</div>
+
+<!-- ENGLISH -->
+<div data-lang="en">
+  <span class="badge">Oz Studio</span>
+  <span class="badge date-badge" style="margin-left:8px">Last Updated: May 19, 2026</span>
+
+  <div class="section"><h2>1. Data Controller</h2><p>Under the Turkish Personal Data Protection Law No. 6698 ("KVKK") and the EU General Data Protection Regulation ("GDPR"), your personal data is processed by <strong>Oz Studio</strong> as the data controller.</p><p><strong>Contact:</strong> <a href="mailto:oz.studio99@gmail.com">oz.studio99@gmail.com</a><br><strong>Location:</strong> Antalya, Türkiye</p></div>
+
+  <div class="section"><h2>2. What Data We Collect</h2>
+  <table>
+    <tr><th>Data Type</th><th>Content</th></tr>
+    <tr><td>Identity Information</td><td>Full name (provided by the user)</td></tr>
+    <tr><td>Contact Information</td><td>Email address</td></tr>
+    <tr><td>Account Information</td><td>Password (encrypted by Firebase Auth, bcrypt), Google account identifier</td></tr>
+    <tr><td>Content Data</td><td>Tasks, messages, room records, routines, photos</td></tr>
+    <tr><td>Usage Data</td><td>Device type, in-app activity, crash reports (Crashlytics)</td></tr>
+    <tr><td>Payment Data</td><td>Not collected directly. Processed by Google Play Store.</td></tr>
+  </table>
+  </div>
+
+  <div class="section"><h2>3. Purposes of Processing</h2>
+  <ul>
+    <li>Account creation and service provision</li>
+    <li>Task and room management features</li>
+    <li>Communication between users (chat, room invitations)</li>
+    <li>Premium subscription management (via RevenueCat)</li>
+    <li>Bug detection, security, and performance improvements</li>
+    <li>Fulfillment of legal obligations</li>
+  </ul>
+  </div>
+
+  <div class="section"><h2>4. Legal Basis</h2>
+  <ul>
+    <li>Performance of a contract (KVKK m.5/2-c, GDPR Art. 6(1)(b))</li>
+    <li>Legal obligation (KVKK m.5/2-ç, GDPR Art. 6(1)(c))</li>
+    <li>Legitimate interest (KVKK m.5/2-f, GDPR Art. 6(1)(f))</li>
+    <li>Explicit consent where required (KVKK m.5/1, GDPR Art. 6(1)(a))</li>
+  </ul>
+  </div>
+
+  <div class="section"><h2>5. Data Transfer</h2>
+  <p>Your data may be transferred to the following service providers:</p>
+  <ul>
+    <li><strong>Google Firebase (USA):</strong> Data storage, authentication, notifications</li>
+    <li><strong>Google Play (USA):</strong> Subscription and payment processing</li>
+    <li><strong>RevenueCat (USA):</strong> Subscription management</li>
+    <li><strong>Judicial and administrative authorities:</strong> In case of legal obligation</li>
+  </ul>
+  </div>
+
+  <div class="section"><h2>6. Data Retention</h2>
+  <ul>
+    <li>Active account data: As long as the account is active</li>
+    <li>Chat messages: <strong>Automatically deleted after 30 days</strong></li>
+    <li>Upon account deletion: All personal data is permanently deleted within 30 days</li>
+    <li>As required by law, for the legally specified period</li>
+  </ul>
+  </div>
+
+  <div class="section"><h2>7. Your Rights (KVKK Article 11 / GDPR)</h2>
+  <ul>
+    <li>To learn whether your personal data is being processed</li>
+    <li>To request information about processed data</li>
+    <li>To learn the purpose of processing and whether it is used in accordance with this purpose</li>
+    <li>To know third parties to whom data is transferred</li>
+    <li>To request correction of incomplete/inaccurate data</li>
+    <li>To request deletion or destruction of data</li>
+    <li>To request data portability (provided in the app via <strong>Settings → Download My Data</strong>)</li>
+    <li>To object to the result of automated analysis</li>
+    <li>To claim compensation for damages</li>
+  </ul>
+  <p style="margin-top:10px">To exercise your rights, write to <a href="mailto:oz.studio99@gmail.com">oz.studio99@gmail.com</a>. Requests are answered within 30 days.</p>
+  </div>
+
+  <div class="section"><h2>8. Security Measures</h2>
+  <ul>
+    <li>Passwords are encrypted by Firebase Auth (bcrypt), never stored in plain text</li>
+    <li>Data is transmitted via TLS-encrypted channel</li>
+    <li>Firestore Security Rules prevent unauthorized access</li>
+    <li>User sessions are managed via tokens</li>
+    <li>Email verification is required</li>
+    <li>Brute-force protection: 15-min lockout after 5 failed attempts</li>
+  </ul>
+  </div>
+
+  <div class="section"><h2>9. Children</h2><p>Tastick is not directed at children under 13. Users aged 13–18 must obtain parental consent before creating an account.</p></div>
+
+  <div class="section"><h2>10. Right to Complain</h2><p>You may also file complaints with the relevant data protection authority. In Türkiye: <a href="https://www.kvkk.gov.tr" target="_blank">www.kvkk.gov.tr</a></p></div>
+
+  <div class="section"><h2>11. Changes</h2><p>This Privacy Notice may be updated. Significant changes will be announced through in-app notifications.</p></div>
+
+  <div class="section"><h2>12. Contact</h2><p><strong>Oz Studio</strong> · Antalya, Türkiye<br>Email: <a href="mailto:oz.studio99@gmail.com">oz.studio99@gmail.com</a></p></div>
+</div>
+
+</div>
+<footer>© 2026 Oz Studio · Tastick · Tüm hakları saklıdır / All rights reserved</footer>
+<script>
+function setLang(lang) {
+  document.querySelectorAll('[data-lang]').forEach(el => { el.style.display = el.dataset.lang === lang ? 'block' : 'none'; });
+  document.querySelectorAll('.lang-switch button').forEach(btn => { btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang); });
+  document.getElementById('header-sub').textContent = lang === 'tr' ? 'Oz Studio · KVKK Aydınlatma Metni' : 'Oz Studio · Privacy Notice';
+}
+</script>
+</body>
+</html>
