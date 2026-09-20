@@ -1,420 +1,384 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hesap Silme · Tastick</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tastick — Hesap ve Veri Silme / Account &amp; Data Deletion</title>
+<meta name="description" content="Tastick hesabını ve verilerini kalıcı olarak silme adımları. How to permanently delete your Tastick account and data.">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #0f0f1a;
-    color: #f0f0f5;
-    line-height: 1.7;
-    min-height: 100vh;
+  :root{
+    --bg:#0a0a18;
+    --card:#13132a;
+    --text:#f0f0ff;
+    --sub:#a0aec0;
+    --accent:#6C63FF;
+    --border:rgba(108,99,255,0.15);
+    --yesil:#34d399;
+    --kirmizi:#f87171;
   }
-  .header {
-    padding: 50px 20px 30px;
-    text-align: center;
-    border-bottom: 1px solid #2a2a44;
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+    line-height:1.7;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
   }
-  .header h1 {
-    font-size: 28px;
-    margin-bottom: 8px;
-    color: #f0f0f5;
-    font-weight: 700;
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* ---- Üst bar ---- */
+  header{
+    position:sticky;top:0;z-index:20;
+    background:rgba(10,10,24,.96);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
   }
-  .header .sub {
-    color: #8888a0;
-    font-size: 13px;
-    margin-bottom: 20px;
+  .marka h1{margin:0;font-size:22px;font-weight:800;letter-spacing:-.02em}
+  .marka div{color:var(--sub);font-size:13px;margin-top:2px}
+  .dil{display:flex;gap:6px;flex-shrink:0}
+  .dil button{
+    font:inherit;font-size:13px;font-weight:700;
+    padding:7px 16px;border-radius:99px;cursor:pointer;
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--border);
+    color:var(--sub);
+    transition:all .18s ease;
   }
-  .lang-switch {
-    display: inline-flex;
-    gap: 6px;
-    background: #1a1a2e;
-    padding: 4px;
-    border-radius: 8px;
-    border: 1px solid #2a2a44;
+  .dil button:hover{color:var(--text)}
+  .dil button.aktif{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  /* ---- Gövde ---- */
+  main{max-width:900px;margin:0 auto;padding:36px 24px 72px}
+  .rozetler{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+  .rozet{
+    background:rgba(108,99,255,.12);
+    border:1px solid var(--border);
+    border-radius:99px;padding:5px 14px;
+    font-size:11px;font-weight:700;letter-spacing:.4px;color:var(--accent);
   }
-  .lang-btn {
-    background: transparent;
-    border: none;
-    color: #8888a0;
-    padding: 6px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    transition: all 0.2s;
+  .rozet.tarih{background:rgba(52,211,153,.10);border-color:rgba(52,211,153,.25);color:var(--yesil)}
+
+  section.kart{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:28px 30px;
+    margin-bottom:22px;
   }
-  .lang-btn:hover { color: #f0f0f5; }
-  .lang-btn.active {
-    background: #6C63FF;
-    color: #fff;
+  section.kart h2{
+    margin:0 0 16px;
+    font-size:19px;font-weight:700;color:var(--accent);letter-spacing:-.01em;
   }
-  .container {
-    max-width: 800px;
-    margin: 30px auto 40px;
-    padding: 0 20px;
+  section.kart h3{margin:24px 0 8px;font-size:15px;font-weight:700;color:var(--text)}
+  section.kart h3:first-of-type{margin-top:4px}
+  p{margin:0 0 14px;color:var(--text)}
+  p:last-child{margin-bottom:0}
+  ol,ul{margin:0 0 14px;padding-left:22px}
+  li{margin-bottom:8px}
+  li:last-child{margin-bottom:0}
+  strong{color:#fff;font-weight:700}
+  em{color:var(--sub);font-style:normal;font-weight:600}
+  code{
+    background:rgba(255,255,255,.06);border:1px solid var(--border);
+    border-radius:6px;padding:1px 6px;font-size:13px;
   }
-  .badges {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
+
+  .uyari{
+    background:rgba(248,113,113,.08);
+    border:1px solid rgba(248,113,113,.28);
+    border-radius:14px;padding:18px 20px;margin:0 0 4px;
   }
-  .badge {
-    background: rgba(108,99,255,0.15);
-    border: 1px solid rgba(108,99,255,0.4);
-    color: #a09cff;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
+  .uyari p:last-child{margin-bottom:0}
+  .bilgi{
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--border);
+    border-radius:14px;padding:16px 18px;margin:16px 0 0;
   }
-  .section {
-    background: #1a1a2e;
-    border: 1px solid #2a2a44;
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 20px;
+  .bilgi p:last-child{margin-bottom:0}
+
+  .tablo-sar{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:14px;margin:4px 0 0}
+  th,td{
+    text-align:left;padding:12px 14px;vertical-align:top;
+    border:1px solid var(--border);
   }
-  .section h2 {
-    color: #6C63FF;
-    font-size: 18px;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  thead th{background:rgba(108,99,255,.16);color:var(--accent);font-weight:700;white-space:nowrap}
+  td{color:var(--sub)}
+  td strong{color:var(--text)}
+
+  footer{
+    border-top:1px solid var(--border);
+    padding:32px 24px;text-align:center;
+    color:var(--sub);font-size:13px;line-height:2;
   }
-  .section p {
-    color: #c8c8d8;
-    margin-bottom: 12px;
-    font-size: 14px;
+  footer a{color:var(--sub)}
+  footer a:hover{color:var(--accent);text-decoration:none}
+  .ayrac{opacity:.4;margin:0 6px}
+
+  [data-dil]{display:none}
+  [data-dil].gorunur{display:block}
+
+  @media (max-width:640px){
+    header{padding:12px 16px}
+    .marka h1{font-size:19px}
+    .marka div{font-size:12px}
+    main{padding:26px 16px 56px}
+    section.kart{padding:22px 18px;border-radius:16px}
+    section.kart h2{font-size:17px}
   }
-  .section ul, .section ol {
-    margin: 12px 0 16px 20px;
-    color: #c8c8d8;
-  }
-  .section li {
-    margin-bottom: 8px;
-    font-size: 14px;
-  }
-  .section strong { color: #f0f0f5; }
-  .highlight-box {
-    background: rgba(108,99,255,0.1);
-    border-left: 4px solid #6C63FF;
-    padding: 14px 18px;
-    border-radius: 8px;
-    margin: 14px 0;
-  }
-  .highlight-box p { color: #d5d5e5; font-size: 13px; margin: 0; }
-  .warning-box {
-    background: rgba(255,71,87,0.1);
-    border-left: 4px solid #FF4757;
-    padding: 14px 18px;
-    border-radius: 8px;
-    margin: 14px 0;
-  }
-  .warning-box p { color: #ffb3ba; font-size: 13px; margin: 0; }
-  .contact {
-    background: linear-gradient(135deg, rgba(108,99,255,0.15), rgba(108,99,255,0.05));
-    border: 1px solid rgba(108,99,255,0.3);
-    text-align: center;
-  }
-  .contact a {
-    color: #a09cff;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  .footer {
-    text-align: center;
-    padding: 30px 20px;
-    color: #6e6e88;
-    font-size: 12px;
-    border-top: 1px solid #2a2a44;
-    margin-top: 20px;
-  }
-  .footer a { color: #a09cff; text-decoration: none; }
-  .hidden { display: none; }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 12px 0;
-    font-size: 13px;
-  }
-  th, td {
-    text-align: left;
-    padding: 10px;
-    border-bottom: 1px solid #2a2a44;
-    color: #c8c8d8;
-  }
-  th { color: #6C63FF; font-weight: 600; }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>Hesap Silme</h1>
-  <div class="sub" id="sub">Tastick · Oz Studio · Hesap ve veri silme talebi</div>
-  <div class="lang-switch">
-    <button class="lang-btn active" id="btn-tr" onclick="setLang('tr')">Türkçe</button>
-    <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
+<header>
+  <div class="marka">
+    <h1>Tastick</h1>
+    <div><span data-dil="tr" class="gorunur">Oz Studio · Hesap ve Veri Silme</span><span data-dil="en">Oz Studio · Account &amp; Data Deletion</span></div>
   </div>
-</div>
+  <div class="dil">
+    <button id="btn-tr" class="aktif" onclick="dilSec('tr')">TR</button>
+    <button id="btn-en" onclick="dilSec('en')">EN</button>
+  </div>
+</header>
 
-<div class="container">
-  <div class="badges">
-    <span class="badge">KVKK</span>
-    <span class="badge">GDPR</span>
-    <span class="badge">Geri Alınamaz</span>
+<!-- ==================== TÜRKÇE ==================== -->
+<main data-dil="tr" class="gorunur">
+
+  <div class="rozetler">
+    <span class="rozet">Oz Studio</span>
+    <span class="rozet">com.tastick.app</span>
+    <span class="rozet tarih">Son Güncelleme: 20 Eylül 2026</span>
   </div>
 
-  <!-- TÜRKÇE -->
-  <div id="content-tr">
-    <div class="section">
-      <h2>📱 Uygulama içinden silme (En hızlı yöntem)</h2>
-      <p>Tastick'i kullanırken hesabınızı doğrudan uygulama içinden silebilirsiniz. Bu en hızlı ve önerilen yöntemdir.</p>
-      <ol>
-        <li>Tastick uygulamasını açın</li>
-        <li>Sağ alt köşede <strong>"Ayarlar"</strong> sekmesine geçin</li>
-        <li>Sayfayı aşağıya kaydırın ve <strong>"Hesabı Sil"</strong> butonunu bulun</li>
-        <li>Butona dokunun ve onaylayın</li>
-        <li>Kimliğinizi yeniden doğrulamanız istenir (şifre veya Google ile giriş)</li>
-        <li>Onayladığınızda hesabınız ve verileriniz silinir</li>
-      </ol>
-      <div class="highlight-box">
-        <p>💡 İşlem anında gerçekleşir ve hesabınıza tekrar giriş yapamazsınız.</p>
-      </div>
+  <section class="kart">
+    <h2>1. Başlamadan Önce</h2>
+    <p>Tastick hesabını ve hesabına bağlı verileri istediğin zaman kalıcı olarak silebilirsin. İki yol var: uygulama içinden veya e-posta ile.</p>
+    <div class="uyari">
+      <p><strong>Önce aboneliğini iptal et.</strong> Tastick Premium aboneliğin varsa, hesabını silmeden önce onu <strong>Google Play üzerinden</strong> iptal etmen gerekiyor:</p>
+      <p>Google Play Store → profil resmin → <em>Ödemeler ve abonelikler</em> → <em>Abonelikler</em> → Tastick → <em>Aboneliği iptal et</em></p>
+      <p>Hesabını silmek aboneliği kendiliğinden iptal etmez; ödeme almaya devam eder.</p>
     </div>
+  </section>
 
-    <div class="section">
-      <h2>📧 E-posta ile silme talebi</h2>
-      <p>Uygulamaya erişiminiz yoksa veya başka bir nedenle uygulama içinden silemiyorsanız, aşağıdaki e-posta adresine talep gönderebilirsiniz:</p>
-      <div class="highlight-box">
-        <p>📩 <strong>oz.studio99@gmail.com</strong></p>
-      </div>
-      <p>E-postanızda lütfen şu bilgileri belirtin:</p>
-      <ul>
-        <li><strong>Konu:</strong> "Hesap Silme Talebi"</li>
-        <li><strong>Kayıtlı e-posta adresiniz</strong> (Tastick hesabınızda kullandığınız)</li>
-        <li><strong>Kullanıcı adınız</strong> (Tastick profilinizdeki ad)</li>
-        <li><strong>Talep onayı</strong>: "Tastick hesabımın ve tüm verilerimin kalıcı olarak silinmesini talep ediyorum."</li>
-      </ul>
-      <p>Talebiniz <strong>en geç 30 gün içinde</strong> işleme alınır. Genellikle 3-7 iş günü içinde tamamlanır.</p>
+  <section class="kart">
+    <h2>2. Yol 1 — Uygulama İçinden (önerilen)</h2>
+    <ol>
+      <li>Tastick'i aç ve hesabına giriş yap.</li>
+      <li>Alt menüden <strong>⚙️ Ayarlar</strong> sekmesine geç.</li>
+      <li>Sayfayı en alta kaydır ve kırmızı <strong>Hesabı Sil</strong> düğmesine dokun.</li>
+      <li>Kimliğini doğrulamak için şifreni gir. Google ile giriş yaptıysan Google seni doğrulayacak.</li>
+      <li>Uyarıyı okuyup onayla.</li>
+    </ol>
+    <p>Silme işlemi anında başlar ve <strong>geri alınamaz</strong>.</p>
+  </section>
+
+  <section class="kart">
+    <h2>3. Yol 2 — E-posta ile</h2>
+    <p>Uygulamaya erişemiyorsan, hesabına kayıtlı e-posta adresinden <a href="mailto:oz.studio99@gmail.com?subject=Hesap%20silme%20talebi">oz.studio99@gmail.com</a> adresine "Hesap silme talebi" konusuyla yaz. Talebi <strong>30 gün içinde</strong> sonuçlandırıp sana dönüş yaparız.</p>
+    <div class="bilgi">
+      <p><strong>Not:</strong> Talebin, hesabın kayıtlı olduğu e-posta adresinden gelmelidir. Başka bir adresten gelen talepleri, hesabın gerçek sahibini korumak için işleme alamıyoruz.</p>
     </div>
+  </section>
 
-    <div class="section">
-      <h2>🗃️ Silinecek veriler</h2>
-      <p>Hesabınız silindiğinde aşağıdaki tüm verileriniz <strong>kalıcı olarak</strong> silinir:</p>
+  <section class="kart">
+    <h2>4. Silinen Veriler</h2>
+    <ul>
+      <li>Hesabın: ad, e-posta adresi, profil fotoğrafı ve profil bilgilerin (biyografi, şirket/okul, şehir, LinkedIn, beceriler)</li>
+      <li>Bütün görevlerin, alt görevlerin, açıklamaların ve rutinlerin</li>
+      <li>Görevlerine eklediğin fotoğraflar</li>
+      <li>Takip ettiklerin, seni takip edenler ve gönderdiğin/aldığın bekleyen istekler</li>
+      <li>Gönderdiğin ve aldığın oda davetleri</li>
+      <li><strong>Sahibi olduğun odalar</strong> — oda ve içindeki bütün sohbet geçmişiyle birlikte</li>
+      <li>Üyesi olduğun diğer odalardan üyeliğin</li>
+      <li>Bildirim jetonun, depolama sayacın ve kaydettiğin mesajlar</li>
+      <li>Engellediğin kişilerin listesi</li>
+    </ul>
+  </section>
+
+  <section class="kart">
+    <h2>5. Silinmeyen Veriler ve Nedenleri</h2>
+    <div class="tablo-sar">
       <table>
-        <tr><th>Veri türü</th><th>Silinme</th></tr>
-        <tr><td>Hesap bilgileri (e-posta, ad, fotoğraf)</td><td>Anında</td></tr>
-        <tr><td>Tüm görevleriniz ve alt görevleriniz</td><td>Anında</td></tr>
-        <tr><td>Yüklediğiniz fotoğraflar</td><td>Anında</td></tr>
-        <tr><td>Rutinler ve istatistikler</td><td>Anında</td></tr>
-        <tr><td>Takip ve takipçi bağlantıları</td><td>Anında</td></tr>
-        <tr><td>Bekleyen davetler/takip istekleri</td><td>Anında</td></tr>
-        <tr><td>Oda sahibi olduğunuz odalar</td><td>30 gün içinde (admin tarafından)</td></tr>
-        <tr><td>Crash log ve teknik kayıtlar (Crashlytics)</td><td>90 gün içinde otomatik</td></tr>
+        <thead>
+          <tr><th>Veri</th><th>Neden kalır</th><th>Süre</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Başkasının</strong> odasında gönderdiğin mesajlar ve paylaştığın dosyalar</td>
+            <td>Odanın ortak sohbet geçmişinin bir parçası; silinmesi diğer üyelerin kaydını bozar. Hesabın silindikten sonra bu mesajlar artık kimliğinle ilişkilendirilmez.</td>
+            <td>Odadaki mesajlar 30 gün sonra kendiliğinden silinir. Oda sahibi odayı silerse tamamı hemen silinir.</td>
+          </tr>
+          <tr>
+            <td>Nadiren: sunucudaki hesap kaydının kendisi</td>
+            <td>Silme isteği teknik bir nedenle tamamlanamazsa kayıt "silinmiş" olarak işaretlenir; adın, e-postan, fotoğrafın ve profil bilgilerin yine de boşaltılır ve hesabın aramalarda görünmez.</td>
+            <td>Talep üzerine elle temizlenir</td>
+          </tr>
+          <tr>
+            <td>Abonelik ve ödeme kayıtları</td>
+            <td>Google Play tarafında tutulur, bizde değildir. Yasal muhasebe yükümlülüğü gereği saklanır.</td>
+            <td>Google Play'in kendi politikası</td>
+          </tr>
+          <tr>
+            <td>Anonim çökme raporları</td>
+            <td>Kimliğinle ilişkilendirilemez; uygulamanın hatalarını düzeltmek için kullanılır.</td>
+            <td>90 gün</td>
+          </tr>
+        </tbody>
       </table>
     </div>
+  </section>
 
-    <div class="section">
-      <h2>⏳ Saklanan veriler ve yasal süreler</h2>
-      <p>Hesabınız silinmesine rağmen bazı veriler <strong>yasal yükümlülükler</strong> nedeniyle sınırlı süreyle saklanabilir:</p>
-      <ul>
-        <li><strong>Ödeme ve fatura kayıtları</strong>: 10 yıl (Türk Ticaret Kanunu, Vergi Usul Kanunu gereği)</li>
-        <li><strong>Premium abonelik geçmişi</strong>: Yasal saklama süresi boyunca (RevenueCat üzerinden)</li>
-        <li><strong>Anonim analitik veriler</strong>: Kişiyle ilişkilendirilemez halde saklanabilir</li>
-      </ul>
-      <p>Bu veriler <strong>kimliğinizle ilişkilendirilemez</strong> şekilde anonimleştirilir veya yasal süre sonunda silinir.</p>
-    </div>
+  <section class="kart">
+    <h2>6. Sadece Bazı Verileri Silmek</h2>
+    <p>Hesabını tamamen silmek istemiyorsan, uygulama içinden tek tek görev, fotoğraf, oda ve mesaj silebilir; profil bilgilerini boşaltabilirsin. Bunun için bize yazmana gerek yok.</p>
+  </section>
 
-    <div class="section">
-      <h2>🛑 Kısmi veri silme</h2>
-      <p>Hesabınızı tamamen silmek istemiyorsanız, belirli verileri kendiniz silebilirsiniz:</p>
-      <ul>
-        <li><strong>Görevler</strong>: Görev üzerinde uzun basıp "Sil"</li>
-        <li><strong>Profil fotoğrafı</strong>: Profil ekranından kaldırma</li>
-        <li><strong>Odalar</strong>: Oda sahibiyseniz silebilir, üyeyseniz çıkabilirsiniz</li>
-        <li><strong>Mesajlar</strong>: "Benden Sil" / "Herkesten Sil" seçenekleri</li>
-      </ul>
-      <p>Daha kapsamlı kısmi silme için <strong>oz.studio99@gmail.com</strong> adresine yazabilirsiniz.</p>
-    </div>
+  <section class="kart">
+    <h2>7. İletişim</h2>
+    <p><strong>Oz Studio</strong><br>
+    E-posta: <a href="mailto:oz.studio99@gmail.com">oz.studio99@gmail.com</a><br>
+    Konum: Antalya, Türkiye</p>
+    <p>Talepler 30 gün içinde yanıtlanır. Ayrıntılar için <a href="privacy-policy.html">Gizlilik Politikası</a> ve <a href="kvkk.html">KVKK Aydınlatma Metni</a> sayfalarına bakabilirsin.</p>
+  </section>
 
-    <div class="section">
-      <h2>💾 Verilerinizi indirme</h2>
-      <p>Hesabınızı silmeden önce verilerinizi indirmek isterseniz:</p>
-      <ol>
-        <li>Tastick → Ayarlar</li>
-        <li><strong>"Verilerimi İndir"</strong> butonuna dokunun</li>
-        <li>JSON formatında tüm verileriniz e-posta veya paylaşım yoluyla indirilir</li>
-      </ol>
-      <p>Bu seçenek KVKK ve GDPR'ın <strong>"veri taşınabilirliği hakkı"</strong> kapsamında sunulmaktadır.</p>
-    </div>
+</main>
 
-    <div class="section">
-      <h2>⚠️ Önemli uyarılar</h2>
-      <div class="warning-box">
-        <p><strong>Hesap silme işlemi GERİ ALINAMAZ.</strong> Silinen veriler kurtarılamaz. Lütfen silmeden önce önemli verilerinizi yedekleyin.</p>
-      </div>
-      <ul>
-        <li>Aynı e-posta ile yeniden kayıt olabilirsiniz, ancak eski verileriniz gelmez</li>
-        <li>Premium aboneliğiniz varsa, silme öncesi App Store / Google Play hesabınızdan iptal etmeniz önerilir</li>
-        <li>Geri ödeme talepleri Google Play kuralları kapsamında ayrı süreçtir</li>
-      </ul>
-    </div>
+<!-- ==================== ENGLISH ==================== -->
+<main data-dil="en">
 
-    <div class="section contact">
-      <h2>📨 İletişim</h2>
-      <p>Sorularınız veya ek talepleriniz için bize ulaşın:</p>
-      <p><a href="mailto:oz.studio99@gmail.com">oz.studio99@gmail.com</a></p>
-      <p style="margin-top: 10px; font-size: 13px; color: #8888a0;">Oz Studio · Antalya, Türkiye</p>
-    </div>
+  <div class="rozetler">
+    <span class="rozet">Oz Studio</span>
+    <span class="rozet">com.tastick.app</span>
+    <span class="rozet tarih">Last Updated: September 20, 2026</span>
   </div>
 
-  <!-- ENGLISH -->
-  <div id="content-en" class="hidden">
-    <div class="section">
-      <h2>📱 Delete from within the app (Fastest method)</h2>
-      <p>You can delete your account directly within the Tastick app. This is the fastest and recommended method.</p>
-      <ol>
-        <li>Open the Tastick app</li>
-        <li>Go to the <strong>"Settings"</strong> tab (bottom right)</li>
-        <li>Scroll down and find the <strong>"Delete Account"</strong> button</li>
-        <li>Tap the button and confirm</li>
-        <li>You'll be asked to re-authenticate (password or Google sign-in)</li>
-        <li>Once confirmed, your account and data will be deleted</li>
-      </ol>
-      <div class="highlight-box">
-        <p>💡 The deletion is immediate and you cannot log back in.</p>
-      </div>
+  <section class="kart">
+    <h2>1. Before You Start</h2>
+    <p>You can permanently delete your Tastick account and all data linked to it at any time. There are two ways: from inside the app, or by email.</p>
+    <div class="uyari">
+      <p><strong>Cancel your subscription first.</strong> If you have a Tastick Premium subscription, cancel it <strong>in Google Play</strong> before deleting your account:</p>
+      <p>Google Play Store → your profile picture → <em>Payments &amp; subscriptions</em> → <em>Subscriptions</em> → Tastick → <em>Cancel subscription</em></p>
+      <p>Deleting your account does not cancel the subscription by itself; billing continues.</p>
     </div>
+  </section>
 
-    <div class="section">
-      <h2>📧 Email deletion request</h2>
-      <p>If you cannot access the app or cannot delete from within, you can send a request to:</p>
-      <div class="highlight-box">
-        <p>📩 <strong>oz.studio99@gmail.com</strong></p>
-      </div>
-      <p>Please include the following in your email:</p>
-      <ul>
-        <li><strong>Subject:</strong> "Account Deletion Request"</li>
-        <li><strong>Your registered email address</strong> (used in your Tastick account)</li>
-        <li><strong>Your username</strong> (name on your Tastick profile)</li>
-        <li><strong>Confirmation:</strong> "I request the permanent deletion of my Tastick account and all associated data."</li>
-      </ul>
-      <p>Your request will be processed <strong>within 30 days at the latest</strong>. Usually completed within 3-7 business days.</p>
+  <section class="kart">
+    <h2>2. Option 1 — In the App (recommended)</h2>
+    <ol>
+      <li>Open Tastick and sign in.</li>
+      <li>Go to the <strong>⚙️ Settings</strong> tab.</li>
+      <li>Scroll to the bottom and tap the red <strong>Delete Account</strong> button.</li>
+      <li>Enter your password to confirm your identity. If you signed in with Google, Google will verify you.</li>
+      <li>Read the warning and confirm.</li>
+    </ol>
+    <p>Deletion starts immediately and <strong>cannot be undone</strong>.</p>
+  </section>
+
+  <section class="kart">
+    <h2>3. Option 2 — By Email</h2>
+    <p>If you can't access the app, email <a href="mailto:oz.studio99@gmail.com?subject=Account%20deletion%20request">oz.studio99@gmail.com</a> from the address registered to your account, with the subject "Account deletion request". We complete such requests <strong>within 30 days</strong>.</p>
+    <div class="bilgi">
+      <p><strong>Note:</strong> The request must come from the email address registered to the account. Requests from any other address cannot be processed, in order to protect the real account holder.</p>
     </div>
+  </section>
 
-    <div class="section">
-      <h2>🗃️ Data to be deleted</h2>
-      <p>When your account is deleted, the following data is <strong>permanently</strong> removed:</p>
+  <section class="kart">
+    <h2>4. What Is Deleted</h2>
+    <ul>
+      <li>Your account: name, email address, profile photo and profile details (bio, company/school, city, LinkedIn, skills)</li>
+      <li>All of your tasks, subtasks, descriptions and routines</li>
+      <li>Photos attached to your tasks</li>
+      <li>Your follows, followers and any pending requests you sent or received</li>
+      <li>Room invitations you sent and received</li>
+      <li><strong>The rooms you own</strong> — together with their entire chat history</li>
+      <li>Your membership of every other room</li>
+      <li>Your notification token, storage counter and saved messages</li>
+      <li>Your block list</li>
+    </ul>
+  </section>
+
+  <section class="kart">
+    <h2>5. What Is Kept, and Why</h2>
+    <div class="tablo-sar">
       <table>
-        <tr><th>Data type</th><th>Deletion</th></tr>
-        <tr><td>Account info (email, name, photo)</td><td>Immediately</td></tr>
-        <tr><td>All tasks and subtasks</td><td>Immediately</td></tr>
-        <tr><td>Uploaded photos</td><td>Immediately</td></tr>
-        <tr><td>Routines and statistics</td><td>Immediately</td></tr>
-        <tr><td>Followers/following connections</td><td>Immediately</td></tr>
-        <tr><td>Pending invites / follow requests</td><td>Immediately</td></tr>
-        <tr><td>Rooms you own</td><td>Within 30 days (by admin)</td></tr>
-        <tr><td>Crash logs and technical records (Crashlytics)</td><td>Automatically within 90 days</td></tr>
+        <thead>
+          <tr><th>Data</th><th>Why it stays</th><th>Retention</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Messages and files you posted in <strong>someone else's</strong> room</td>
+            <td>They are part of that room's shared history; removing them would break the other members' record. After your account is deleted they are no longer linked to your identity.</td>
+            <td>Room messages are deleted automatically after 30 days. If the room owner deletes the room, all of them go at once.</td>
+          </tr>
+          <tr>
+            <td>Rarely: the account record itself on the server</td>
+            <td>If the deletion request cannot be completed for technical reasons, the record is flagged as deleted; your name, email, photo and profile details are cleared regardless and the account no longer appears in search.</td>
+            <td>Removed by hand on request</td>
+          </tr>
+          <tr>
+            <td>Subscription and payment records</td>
+            <td>Held by Google Play, not by us. Retained under legal accounting obligations.</td>
+            <td>Google Play's own policy</td>
+          </tr>
+          <tr>
+            <td>Anonymous crash reports</td>
+            <td>Cannot be linked to your identity; used to fix bugs in the app.</td>
+            <td>90 days</td>
+          </tr>
+        </tbody>
       </table>
     </div>
+  </section>
 
-    <div class="section">
-      <h2>⏳ Retained data and legal periods</h2>
-      <p>Even after your account is deleted, some data may be retained for a limited time due to <strong>legal obligations</strong>:</p>
-      <ul>
-        <li><strong>Payment and invoice records</strong>: 10 years (per Turkish Commercial and Tax Code)</li>
-        <li><strong>Premium subscription history</strong>: For legal retention period (via RevenueCat)</li>
-        <li><strong>Anonymous analytics data</strong>: Stored in a form that cannot be linked to you</li>
-      </ul>
-      <p>This data is <strong>anonymized</strong> so it cannot be associated with you, or deleted at the end of the legal period.</p>
-    </div>
+  <section class="kart">
+    <h2>6. Deleting Only Some Data</h2>
+    <p>If you don't want to delete your whole account, you can delete individual tasks, photos, rooms and messages, and clear your profile fields, from inside the app. No request to us is needed.</p>
+  </section>
 
-    <div class="section">
-      <h2>🛑 Partial data deletion</h2>
-      <p>If you don't want to delete your entire account, you can remove specific data yourself:</p>
-      <ul>
-        <li><strong>Tasks</strong>: Long press on a task and "Delete"</li>
-        <li><strong>Profile photo</strong>: Remove from profile screen</li>
-        <li><strong>Rooms</strong>: Delete if owner, or leave if member</li>
-        <li><strong>Messages</strong>: "Delete for me" / "Delete for everyone" options</li>
-      </ul>
-      <p>For more comprehensive partial deletion, contact <strong>oz.studio99@gmail.com</strong>.</p>
-    </div>
+  <section class="kart">
+    <h2>7. Contact</h2>
+    <p><strong>Oz Studio</strong><br>
+    Email: <a href="mailto:oz.studio99@gmail.com">oz.studio99@gmail.com</a><br>
+    Location: Antalya, Türkiye</p>
+    <p>Requests are answered within 30 days. See the <a href="privacy-policy.html">Privacy Policy</a> for further details.</p>
+  </section>
 
-    <div class="section">
-      <h2>💾 Download your data</h2>
-      <p>If you want to download your data before deleting your account:</p>
-      <ol>
-        <li>Open Tastick → Settings</li>
-        <li>Tap <strong>"Export My Data"</strong></li>
-        <li>All your data will be downloaded in JSON format via email or share</li>
-      </ol>
-      <p>This option is provided under the <strong>"right to data portability"</strong> as per KVKK and GDPR.</p>
-    </div>
+</main>
 
-    <div class="section">
-      <h2>⚠️ Important warnings</h2>
-      <div class="warning-box">
-        <p><strong>Account deletion is IRREVERSIBLE.</strong> Deleted data cannot be recovered. Please back up important data before deleting.</p>
-      </div>
-      <ul>
-        <li>You can re-register with the same email, but old data won't return</li>
-        <li>If you have a Premium subscription, cancel it via App Store / Google Play before deleting</li>
-        <li>Refund requests are subject to Google Play's separate policy</li>
-      </ul>
-    </div>
-
-    <div class="section contact">
-      <h2>📨 Contact</h2>
-      <p>For questions or additional requests, reach us at:</p>
-      <p><a href="mailto:oz.studio99@gmail.com">oz.studio99@gmail.com</a></p>
-      <p style="margin-top: 10px; font-size: 13px; color: #8888a0;">Oz Studio · Antalya, Türkiye</p>
-    </div>
-  </div>
-</div>
-
-<div class="footer">
-  <p>© 2026 Oz Studio · Tastick · Tüm hakları saklıdır / All rights reserved</p>
-  <p style="margin-top: 8px;">
-    <a href="privacy-policy.html">Gizlilik Politikası</a> ·
-    <a href="terms-of-service.html">Kullanım Koşulları</a> ·
-    <a href="kvkk.html">KVKK</a>
-  </p>
-</div>
+<footer>
+  <a href="index.html">Oz Studio</a><span class="ayrac">·</span>
+  <a href="privacy-policy.html">Gizlilik Politikası</a><span class="ayrac">·</span>
+  <a href="terms-of-service.html">Kullanım Şartları</a><span class="ayrac">·</span>
+  <a href="kvkk.html">KVKK</a><span class="ayrac">·</span>
+  <a href="mailto:oz.studio99@gmail.com">İletişim</a>
+  <br>© 2026 Oz Studio · Tastick · Tüm hakları saklıdır / All rights reserved
+</footer>
 
 <script>
-  function setLang(lang) {
-    const tr = document.getElementById('content-tr');
-    const en = document.getElementById('content-en');
-    const btnTr = document.getElementById('btn-tr');
-    const btnEn = document.getElementById('btn-en');
-    const sub = document.getElementById('sub');
-    if (lang === 'tr') {
-      tr.classList.remove('hidden');
-      en.classList.add('hidden');
-      btnTr.classList.add('active');
-      btnEn.classList.remove('active');
-      sub.textContent = 'Tastick · Oz Studio · Hesap ve veri silme talebi';
-      document.title = 'Hesap Silme · Tastick';
-      document.documentElement.lang = 'tr';
-    } else {
-      tr.classList.add('hidden');
-      en.classList.remove('hidden');
-      btnTr.classList.remove('active');
-      btnEn.classList.add('active');
-      sub.textContent = 'Tastick · Oz Studio · Account and data deletion request';
-      document.title = 'Account Deletion · Tastick';
-      document.documentElement.lang = 'en';
-    }
+  function dilSec(dil){
+    document.querySelectorAll('[data-dil]').forEach(function(el){
+      el.classList.toggle('gorunur', el.getAttribute('data-dil') === dil);
+    });
+    document.getElementById('btn-tr').classList.toggle('aktif', dil === 'tr');
+    document.getElementById('btn-en').classList.toggle('aktif', dil === 'en');
+    document.documentElement.lang = dil;
+    try { localStorage.setItem('tastickDil', dil); } catch(e){}
+    window.scrollTo({ top: 0 });
   }
+  (function(){
+    var kayitli = null;
+    try { kayitli = localStorage.getItem('tastickDil'); } catch(e){}
+    var dil = kayitli || ((navigator.language || 'tr').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+    if (dil === 'en') dilSec('en');
+  })();
 </script>
+
 </body>
 </html>
